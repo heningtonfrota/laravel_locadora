@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\MovementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,4 @@ use App\Http\Controllers\ClientController;
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 Route::resource('cars', CarController::class);
 Route::resource('clients', ClientController::class);
+Route::resource('movements', MovementController::class);

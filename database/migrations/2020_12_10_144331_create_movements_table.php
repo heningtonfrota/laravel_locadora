@@ -14,15 +14,19 @@ class CreateMovementsTable extends Migration
     public function up()
     {
         Schema::create('movements', function (Blueprint $table) {
+            $table->id();
+
             $table->unsignedBigInteger('car_id');
             $table->unsignedBigInteger('client_id');
 
-            $table->string('cost');
-            $table->string('recipe');            
+            $table->decimal('cost', 10,2)->nullable();
+            $table->decimal('recipe', 10,2)->nullable();
 
             $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
-        });
+
+            $table->timestamps();
+          });
     }
 
     /**

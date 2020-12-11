@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="form-group">
-            <button class="btn btn-success btn-lg" type="submit">Atualizar Informações</button>
+            <button class="btn btn-success btn-lg" type="submit">Adicionar Veiculo</button>
         </div>
     </form>
 @endsection

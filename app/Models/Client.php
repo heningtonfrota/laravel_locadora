@@ -13,8 +13,8 @@ class Client extends Model
         'cpf', 'name', 'mobile_phone', 'leased_quantity'
     ];
 
-    public function movements()
+    public function cars()
     {
-        return $this->belongsToMany(Movement::class);
+        return $this->belongsToMany(Car::class, 'movements');
     }
 }

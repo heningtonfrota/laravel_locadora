@@ -13,13 +13,13 @@ class Movement extends Model
         'car_id', 'client_id', 'cost', 'recipe'
     ];
 
-    public function movements()
+    public function clients()
     {
-        return $this->belongsToMany(Car::class);
+        return $this->belongsToMany(Client::class, 'movements');
     }
 
-    public function movements()
+    public function cars()
     {
-        return $this->belongsToMany(Client::class);
+        return $this->belongsToMany(Car::class, 'movements');
     }
 }

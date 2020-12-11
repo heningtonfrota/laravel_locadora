@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Movement;
 
 class Car extends Model
 {
@@ -14,8 +13,8 @@ class Car extends Model
         'plate', 'color', 'model', 'year'
     ];
 
-    public function movements()
+    public function clients()
     {
-        return $this->belongsToMany(Movement::class);
+        return $this->belongsToMany(Client::class, 'movements');
     }
 }
