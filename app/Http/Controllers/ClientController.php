@@ -42,18 +42,9 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
         $clients = client::all();
-
-        $client = new Client;
-
-        $client->name = $request->name;
-        $client->cpf = $request->cpf;
-        $client->mobile_phone = $request->mobile_phone;
-        $client->leased_quantity = $request->leased_quantity;
-
-        $client->save();
-
+        $data = $request->all();
+	      $client = $this->client->create($data);
         return redirect()->route('clients.index', compact('clients'));
     }
 
@@ -77,7 +68,6 @@ class ClientController extends Controller
     public function edit($client)
     {
         $client = \App\Models\Client::find($client);
-
         return view('clients.edit', compact('client'));
     }
 
@@ -91,7 +81,6 @@ class ClientController extends Controller
     public function update(Request $request, $client)
     {
         $data = $request->all();
-        //dd($data);
         $client = \App\Models\Client::find($client);
         $client->update($data);
         return redirect()->route('clients.edit', ['client' =>$client->id]);

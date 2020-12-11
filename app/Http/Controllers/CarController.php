@@ -23,7 +23,6 @@ class CarController extends Controller
     public function index()
     {
         $cars = car::all();
-
         return view('cars.index', compact('cars'));
     }
 
@@ -34,7 +33,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        return view('cars.create');
     }
 
     /**
@@ -45,7 +44,10 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cars = car::all();
+        $data = $request->all();
+	      $car = $this->car->create($data);
+        return redirect()->route('cars.index', compact('cars'));
     }
 
     /**
@@ -65,9 +67,10 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($car)
     {
-        //
+        $car = \App\Models\Car::find($car);
+        return view('cars.edit', compact('car'));
     }
 
     /**
@@ -77,9 +80,12 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $car)
     {
-        //
+        $data = $request->all();
+        $car = \App\Models\Car::find($car);
+        $car->update($data);
+        return redirect()->route('cars.edit', ['car' =>$car->id]);
     }
 
     /**
@@ -88,8 +94,10 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($car)
     {
-        //
+        $car = \App\Models\Car::find($car);
+        $car->delete();
+        return redirect()->route('cars.index');
     }
 }
