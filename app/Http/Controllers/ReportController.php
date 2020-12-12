@@ -3,23 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Movement;
-use App\Models\Car;
-use App\Models\Client;
 
-class MovementController extends Controller
+class ReportController extends Controller
 {
-    private $movement;
-    private $car;
-    private $client;
-
-    public function __construct (Movement $movement, Car $car, Client $client)
-    {
-       $this->movement = $movement;
-       $this->car = $car;
-       $this->client = $client;
-
-    }
     /**
      * Display a listing of the resource.
      *
@@ -27,10 +13,7 @@ class MovementController extends Controller
      */
     public function index()
     {
-      $movements = Movement::all();
-      $car = Car::all();
-      $client = Client::all();
-      return view('movements.index', compact('movements', 'car', 'client'));
+        //
     }
 
     /**
@@ -40,9 +23,7 @@ class MovementController extends Controller
      */
     public function create()
     {
-        $clients = Client::all();
-        $cars = Car::all();
-        return view('movements.create', compact('clients', 'cars'));
+        //
     }
 
     /**
@@ -53,18 +34,7 @@ class MovementController extends Controller
      */
     public function store(Request $request)
     {
-        if (isset($request->cost) || isset($request->recipe)) {
-            $clients = client::all();
-            $cars = Car::all();
-
-            $data = $request->all();
-    	      $movement = $this->movement->create($data);
-
-            return redirect()->route('movements.index', compact('cars', 'clients'));
-        } else {
-           return redirect()->back();
-        }
-
+        //
     }
 
     /**

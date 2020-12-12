@@ -15,6 +15,11 @@ class Car extends Model
 
     public function clients()
     {
-        return $this->belongsToMany(Client::class, 'movements');
+        return $this->belongsToMany(Client::class, 'movement', 'car_id', 'id');
+    }
+
+    public function movements()
+    {
+        return $this->belongsToMany(Movement::class);
     }
 }

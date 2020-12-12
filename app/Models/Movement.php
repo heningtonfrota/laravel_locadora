@@ -15,11 +15,11 @@ class Movement extends Model
 
     public function clients()
     {
-        return $this->belongsToMany(Client::class, 'movements');
+        return $this->belongsToMany(Client::class);
     }
 
     public function cars()
     {
-        return $this->belongsToMany(Car::class, 'movements');
+        return $this->belongsToMany(Car::class);
     }
 }
