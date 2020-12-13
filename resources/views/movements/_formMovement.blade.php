@@ -7,7 +7,7 @@
 @endphp
 <div class="form-group">
     <label for="exampleFormControlSelect1">Example select</label>
-    <select class="form-control col-sm-6" id="exampleFormControlSelect1" name="car_id">
+    <select class="form-control col-sm-6" id="exampleFormControlSelect1" name="car_id" required>
         <option selected disabled value="">@if(isset($car->id)){{$car->plate}} @else {{old('cost')}} @endif</option>
         @foreach($cars as $car)
             <option value="{{$car->id}}">{{$car->plate}}</option>

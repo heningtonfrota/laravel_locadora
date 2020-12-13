@@ -27,9 +27,10 @@ class MovementController extends Controller
      */
     public function index()
     {
-      $movements = Movement::orderBy('id', 'DESC')->paginate(5);
+      $movements = Movement::orderBy('id', 'DESC')->paginate(10);
       $car = Car::all();
       $client = Client::all();
+      //dd($client->find(1)->name);
       return view('movements.index', compact('movements', 'car', 'client'));
     }
 
@@ -53,7 +54,8 @@ class MovementController extends Controller
      */
     public function store(Request $request)
     {
-        if (isset($request->cost) || isset($request->recipe)) {
+        //dd($request);
+        if (isset($request->car_id) || isset($request->cost) || isset($request->recipe)) {
             $clients = client::all();
             $cars = Car::all();
 
