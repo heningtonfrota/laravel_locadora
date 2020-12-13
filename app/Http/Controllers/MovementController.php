@@ -27,7 +27,7 @@ class MovementController extends Controller
      */
     public function index()
     {
-      $movements = Movement::all();
+      $movements = Movement::orderBy('id', 'DESC')->paginate(5);
       $car = Car::all();
       $client = Client::all();
       return view('movements.index', compact('movements', 'car', 'client'));
@@ -84,9 +84,13 @@ class MovementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($movement)
     {
-        //
+        $clients = Client::all();
+        $cars = Car::all();
+
+        $movement = \App\Models\Movement::find($movement);
+        return view('movements.edit', compact('movement', 'cars', 'clients'));
     }
 
     /**
@@ -96,9 +100,13 @@ class MovementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $movement)
     {
-        //
+        $data = $request->all();
+        // dd($data);
+        $movement = \App\Models\Movement::find($movement);
+        $movement->update($data);
+        return redirect()->route('movements.edit', ['movement' =>$movement->id]);
     }
 
     /**
@@ -107,8 +115,10 @@ class MovementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($movement)
     {
-        //
+        $movement = \App\Models\Movement::find($movement);
+        $movement->delete();
+        return redirect()->route('movements.index');
     }
 }

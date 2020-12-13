@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{route('movements.create')}}" class="btn btn-lg btn-block btn-success my-3"><i class="fas fa-plus-circle"></i> Adicionar Registro</a>
-<table class="table table-striped">
-    <thead>
+<table class="table table-sm">
+    <thead class="table-dark">
         <th>Order Nº</th>
         <th>Placa</th>
         <th>Modelo</th>
@@ -11,7 +10,6 @@
         <th>Custo</th>
         <th>Receita</th>
         <th>Data</th>
-        <th>Ações</th>
     </thead>
     <tbody>
         @foreach($movements as $movement)
@@ -27,21 +25,27 @@
                 <td>{{$movement->cost}}</td>
                 <td>{{$movement->recipe}}</td>
                 <td>{{\Carbon\Carbon::parse($movement->created_at)->format('d/m/Y') }}</td>
-                <td>
-                    <div class="btn-group">
-                        <a href="{{route('movements.edit', ['movement' => $movement->id])}}" class="btn btn-sm btn-warning">Editar</a>
-                        <form action="{{route('movements.destroy', ['movement' => $movement->id])}}" method="post">
-                            @csrf
-                            @method("DELETE")
-                            <button type="submit" class="btn btn-sm btn-danger">Deletar</button>
-                        </form>
-                    </div>
-                </td>
             </tr>
         @endforeach
     </tbody>
 </table>
-<div class="text-center p-2">
-    {{ $movements->links() }}
+<hr>
+<div class="row text-center">
+    <div class="col">
+        <h2>Custos do Dia</h2>
+        <h1>{{$costDay}}</h1>
+    </div>
+    <div class="col">
+        <h2>Receita do Dia</h2>
+        <h1>{{$recipeDay}}</h1>
+    </div>
+    <div class="col">
+        <h2>Saldo Diário</h2>
+        @if($dailyBalance >= 0)
+            <h1 class="bg-success">R$ {{ number_format( $dailyBalance, 2) }}</h1>
+        @else
+            <h1 class="bg-danger">R$ {{ number_format( $dailyBalance, 2) }}</h1>
+        @endif
+    </div>
 </div>
 @endsection

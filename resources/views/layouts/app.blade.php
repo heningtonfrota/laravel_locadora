@@ -11,7 +11,32 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
         <a class="navbar-brand" href="{{route('welcome')}}">Locadora</a>
-      </nav>
+        <div class="mr-3">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="{{route('cars.index')}}" class="btn btn-link text-white">Lista de Carros</a>
+                </li>
+                <li>
+                    <a href="{{route('clients.index')}}" class="btn btn-link text-white">Lista de Clientes</a>
+                </li>
+                <li>
+                    <a href="{{route('movements.index')}}" class="btn btn-link text-white">Movimentações</a>
+                </li>
+            </ul>
+        </div>
+        <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Relatórios
+            </a>
+
+            <div class="dropdown-menu"  style="width: 30em;" aria-labelledby="dropdownMenuLink">
+                <a href="{{route('reports.cost_recipe_day')}}" class="btn btn-info btn-block">Relatório de custo e receita com saldo diário</a>
+                <a href="{{route('reports.higher_revenue_vehicles')}}" class="btn btn-info btn-block">Relatório dos 10 veículos que deram maior receita</a>
+                <a href="{{route('reports.higher_cost_vehicles')}}" class="btn btn-info btn-block">Relatório dos 10 veículos que deram o maior custo</a>
+                <a href="{{route('reports.most_rented_customers')}}" class="btn btn-info btn-block"> 10 clientes que mais alugaram veículos na locadora</a>
+            </div>
+        </div>
+    </nav>
     <div class="container">
         @yield('content')
     </div>
