@@ -21,7 +21,11 @@
                 <td>{{$movement->id}}</td>
                 <td>{{$cars->plate}}</td>
                 <td>{{$cars->model}}</td>
-                <td>{{$clients->name}}</td>
+                @if(isset($clients->name))
+                    <td>{{$clients->name}}</td>
+                @else
+                    <td></td>
+                @endif
                 <td>{{$movement->cost}}</td>
                 <td>{{$movement->recipe}}</td>
                 <td>{{\Carbon\Carbon::parse($movement->created_at)->format('d/m/Y') }}</td>
