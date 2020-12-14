@@ -2,7 +2,7 @@
 
 @section('content')
 <a href="{{route('movements.create')}}" class="btn btn-lg btn-block btn-success my-3"><i class="fas fa-plus-circle"></i> Adicionar Registro</a>
-<table class="table table-striped text-center">
+<table class="table table-striped table-sm text-center">
     <thead>
         <th>Order Nº</th>
         <th>Placa</th>
@@ -13,7 +13,7 @@
         <th>Data</th>
         <th>Ações</th>
     </thead>
-    <tbody>
+    <tbody class="text-uppercase">
         @foreach($movements as $movement)
             @php
                 $cars = $car->find($movement->car_id);
@@ -28,8 +28,8 @@
                 @else
                     <td></td>
                 @endif
-                <td>{{$movement->cost}}</td>
-                <td>{{$movement->recipe}}</td>
+                <td>R$ {{number_format($movement->cost, 2, ',', '.')}}</td>
+                <td>R$ {{number_format($movement->recipe, 2, ',', '.')}}</td>
                 <td>{{\Carbon\Carbon::parse($movement->created_at)->format('d/m/Y') }}</td>
                 <td>
                     <div class="btn-group">

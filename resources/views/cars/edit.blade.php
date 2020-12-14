@@ -8,25 +8,25 @@
         <div class="row">
             <div class="form-group col-sm-6">
                 <label for="">Placa do Veiculo</label>
-                <input class="form-control" type="text" name="plate" value="{{$car->plate}}" maxlength="7">
+                <input class="form-control text-uppercase" type="text" name="plate" value="{{$car->plate}}" maxlength="7">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-sm-6">
                 <label for="">Cor</label>
-                <input class="form-control" type="text" name="color" value="{{$car->color}}">
+                <input class="form-control text-uppercase" type="text" name="color" value="{{$car->color}}">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-sm-6">
                 <label for="">Modelo</label>
-                <input class="form-control" type="text" name="model" value="{{$car->model}}">
+                <input class="form-control text-uppercase" type="text" name="model" value="{{$car->model}}">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-sm-6">
                 <label for="">Ano</label>
-                <input class="form-control" type="number" name="year" value="{{$car->year}}" maxlength="4">
+                <input class="form-control text-uppercase" type="number" name="year" value="{{$car->year}}" maxlength="4">
             </div>
         </div>
         <div class="form-group">

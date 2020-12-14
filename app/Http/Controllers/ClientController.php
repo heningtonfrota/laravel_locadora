@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
+use App\Models\Movement;
 
 class ClientController extends Controller
 {
@@ -20,8 +21,20 @@ class ClientController extends Controller
      */
     public function index()
     {
+        $lastVehicle = Client::select('id')->orderByDesc('id')->limit(1)->value('id');
+        $a = 1;
+        $vehicle = 1;
+        while ($a <= $lastVehicle) {
+            $vehicles[Client::where('id', $a)->value('id')] = Movement::where('client_id', $vehicle)->count();
+            $vehicle++;
+            $a++;
+        }
+        // dd($vehicles);
+        //
         $clients = client::all();
-        return view('clients.index', compact('clients'));
+        // $movements = Movement::where('client_id', 3)->count();
+        // dd($movements);
+        return view('clients.index', compact('clients', 'vehicles'));
     }
 
     /**

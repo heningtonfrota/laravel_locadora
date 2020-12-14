@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <h1>Atualizar Dados do Registro: <strong><u>{{$movement->model}}</u></strong></h1>
+    <h1>Atualizar Dados do Registro: <strong><u>{{$movement->id}}</u></strong></h1>
     <hr>
     <form action="{{route('movements.update', ['movement' => $movement->id])}}" method="POST">
         @csrf

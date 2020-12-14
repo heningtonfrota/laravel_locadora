@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<table class="table table-sm">
+<table class="table table-sm text-center">
     <thead class="table-dark">
         <th>Order Nº</th>
         <th>Placa</th>
@@ -11,7 +11,7 @@
         <th>Receita</th>
         <th>Data</th>
     </thead>
-    <tbody>
+    <tbody class="text-uppercase">
         @foreach($movements as $movement)
             @php
                 $cars = $car->find($movement->car_id);
@@ -26,8 +26,8 @@
                 @else
                     <td></td>
                 @endif
-                <td>{{$movement->cost}}</td>
-                <td>{{$movement->recipe}}</td>
+                <td>R$ {{number_format($movement->cost, 2, ',', '.')}}</td>
+                <td>R$ {{number_format($movement->recipe, 2, ',', '.')}}</td>
                 <td>{{\Carbon\Carbon::parse($movement->created_at)->format('d/m/Y') }}</td>
             </tr>
         @endforeach

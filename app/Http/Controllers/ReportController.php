@@ -36,13 +36,13 @@ class ReportController extends Controller
         $a = 1;
         $vehicle = 1;
         while ($a <= $lastVehicle) {
-            $vehicles[Car::where('id', $a)->value('plate')] = Movement::where('car_id', $vehicle)->sum('recipe');
+            $vehicles[Car::where('id', $a)->value('plate')] = [Movement::where('car_id', $vehicle)->sum('recipe'), Car::where('id', $a)->value('model')];
             $vehicle++;
             $a++;
         }
         arsort($vehicles);
         $position = 0;
-        //dd($position);
+        //dd($vehicles);
         return view('reports.higher_revenue_vehicles', compact('vehicles', 'position'));
     }
 
@@ -52,29 +52,31 @@ class ReportController extends Controller
         $a = 1;
         $vehicle = 1;
         while ($a <= $lastVehicle) {
-            $vehicles[Car::where('id', $a)->value('plate')] = Movement::where('car_id', $vehicle)->sum('cost');
+            $vehicles[Car::where('id', $a)->value('plate')] = [Movement::where('car_id', $vehicle)->sum('cost'), Car::where('id', $a)->value('model')];
             $vehicle++;
             $a++;
         }
         arsort($vehicles);
         $position = 0;
         //dd($position);
+        //dd($vehicles);
         return view('reports.higher_cost_vehicles', compact('vehicles', 'position'));
     }
 
     public function most_rented_customers()
     {
-        $lastVehicle = Car::select('id')->orderByDesc('id')->limit(1)->value('id');
+        $lastVehicle = Client::select('id')->orderByDesc('id')->limit(1)->value('id');
         $a = 1;
         $vehicle = 1;
         while ($a <= $lastVehicle) {
-            $vehicles[Client::where('id', $a)->value('name')] = Movement::where('client_id', $vehicle)->sum('car_id');
+            $vehicles[Client::where('id', $a)->value('name')] = [Movement::where('client_id', $vehicle)->count('car_id'), Client::where('id', $vehicle)->value('cpf')];
             $vehicle++;
             $a++;
         }
         arsort($vehicles);
         $position = 0;
-        //dd($position);
+        // dd($position);
+        // dd($vehicles);
         return view('reports.most_rented_customers', compact('vehicles', 'position'));
     }
 
